@@ -8,7 +8,7 @@ pipeline {
     }
 
     environment {
-        IMAGE_NAME = "task-manager"
+        IMAGE_NAME = "taskmanager"
         IMAGE_TAG = "v1"
     }
 
