@@ -1,0 +1,43 @@
+body{
+
+    background:#f4f7fa;
+
+}
+
+.navbar{
+
+    padding:15px;
+
+}
+
+.card{
+
+    border-radius:12px;
+
+}
+
+.card-header{
+
+    font-size:22px;
+
+    font-weight:bold;
+
+}
+
+table{
+
+    text-align:center;
+
+}
+
+.btn{
+
+    border-radius:8px;
+
+}
+
+.badge{
+
+    font-size:15px;
+
+}
