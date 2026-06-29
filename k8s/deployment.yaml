@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: taskmanager
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: taskmanager
+
+  template:
+    metadata:
+      labels:
+        app: taskmanager
+
+    spec:
+      containers:
+        - name: taskmanager
+
+          image: 26ayush007/taskmanager:v1
+
+          imagePullPolicy: Always
+
+          ports:
+            - containerPort: 8081
+            - containerPort: 9090
