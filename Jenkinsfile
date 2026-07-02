@@ -11,7 +11,7 @@ environment {
     DOCKERHUB_USERNAME = '26ayush007'
     IMAGE_NAME = 'taskmanager'
     IMAGE_TAG = 'v1'
-    KUBECONFIG = 'C:\Users\AYUSH\.kube\config'
+    KUBECONFIG = 'C:/Users/AYUSH/.kube/config'
 }
 
 stages {
@@ -146,7 +146,7 @@ stages {
             bat 'kubectl --kubeconfig=%KUBECONFIG% get deployments'
 
             bat 'kubectl --kubeconfig=%KUBECONFIG% get pods'
-            
+
             bat 'kubectl --kubeconfig=%KUBECONFIG% get svc'
         }
     }
