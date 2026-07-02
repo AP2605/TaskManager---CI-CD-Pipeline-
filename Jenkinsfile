@@ -11,6 +11,7 @@ environment {
     DOCKERHUB_USERNAME = '26ayush007'
     IMAGE_NAME = 'taskmanager'
     IMAGE_TAG = 'v1'
+    KUBECONFIG = 'C:\Users\AYUSH\.kube\config'
 }
 
 stages {
@@ -112,10 +113,15 @@ stages {
 
     stage('Test Kubernetes Access') {
     steps {
-        bat 'kubectl config current-context'
-        bat 'kubectl config view'
-        bat 'kubectl cluster-info'
-        bat 'kubectl get nodes'
+        bat 'echo %KUBECONFIG%'
+
+        bat 'kubectl --kubeconfig=%KUBECONFIG% config get-contexts'
+
+        bat 'kubectl --kubeconfig=%KUBECONFIG% config current-context'
+
+        bat 'kubectl --kubeconfig=%KUBECONFIG% get nodes'
+
+        bat 'kubectl --kubeconfig=%KUBECONFIG% cluster-info'
     }
 }
 
@@ -123,11 +129,11 @@ stages {
         steps {
             echo "Deploying application to Kubernetes..."
 
-            bat 'kubectl apply -f k8s/deployment.yaml'
+            bat 'kubectl --kubeconfig=%KUBECONFIG% apply -f k8s/deployment.yaml'
 
-            bat 'kubectl apply -f k8s/service.yaml'
+            bat 'kubectl --kubeconfig=%KUBECONFIG% apply -f k8s/service.yaml'
 
-            bat 'kubectl rollout restart deployment/taskmanager'
+            bat 'kubectl --kubeconfig=%KUBECONFIG% rollout restart deployment/taskmanager'
         }
     }
 
@@ -135,13 +141,13 @@ stages {
         steps {
             echo "Checking Deployment..."
 
-            bat 'kubectl rollout status deployment/taskmanager'
+            bat 'kubectl --kubeconfig=%KUBECONFIG% rollout status deployment/taskmanager'
 
-            bat 'kubectl get deployments'
+            bat 'kubectl --kubeconfig=%KUBECONFIG% get deployments'
 
-            bat 'kubectl get pods'
-
-            bat 'kubectl get svc'
+            bat 'kubectl --kubeconfig=%KUBECONFIG% get pods'
+            
+            bat 'kubectl --kubeconfig=%KUBECONFIG% get svc'
         }
     }
 }
