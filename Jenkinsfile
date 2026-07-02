@@ -110,6 +110,15 @@ stages {
         }
     }
 
+    stage('Test Kubernetes Access') {
+    steps {
+        bat 'kubectl config current-context'
+        bat 'kubectl config view'
+        bat 'kubectl cluster-info'
+        bat 'kubectl get nodes'
+    }
+}
+
     stage('Deploy to Kubernetes') {
         steps {
             echo "Deploying application to Kubernetes..."
